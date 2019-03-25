@@ -48,8 +48,10 @@ Gaussian entries and we increase the forget gate bias.
 ### Files
 
 model_architecture.py - Contains the build_model function which constructs and compiles the shared model.
+
 glove_model.py - Processes all of the data using pretrained glove embeddings, then trains the model for 50 epochs. 
 The history is stored in the histories folder. The weights of the model are also stored, as is the
 processed data itself so that the model can be restored to compute predictions and further evaluate the model. 
+
 word2vec_model.py - Processes all of the data using a word2vec model, then trains the model for 50 epochs. The history is stored
 in the histories folder.
