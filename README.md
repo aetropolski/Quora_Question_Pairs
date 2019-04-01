@@ -41,11 +41,11 @@ Prep Data:
 1. Text cleaning
 2. Tokenization (done automatically when using gensim's Word2Vec model)
     - Since we will be padding with zeros later, no word is assigned an integer of 0
-3. Build embedding matrix (provided automatically when using Word2Vec)
+3. Build embedding matrix if necessary (provided automatically when using Word2Vec)
     - The first row of the embedding matrix is initialized as a zero vector, to correspond to the 0 padding token
     - The final row of the embedding matrix is initialized as a random vector, to correspond to all out of vocabulary words
 4. Replace text in dataset with sequences of integers
-5. Split into training and testing sets (this is the same splitting in both models)
+5. Split into training and testing sets (this is the same splitting in each model)
 6. Pad sequences with zeros so they are all the same length
 
 The neural network is built as follows:
