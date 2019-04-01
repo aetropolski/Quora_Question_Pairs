@@ -1,18 +1,11 @@
 # Predicting Question Similarity
 
+The dataset consists of pairs of questions labeled with a 0 if they are semantically different and 1 if they are semantically the same.
+
 This project aims to implement the ideas in the paper [Siamese Recurrent Architectures for Learning Sentence Similarity](http://www.mit.edu/~jonasm/info/MuellerThyagarajan_AAAI16.pdf) on the [Quora Question pairs dataset](https://data.world/xprizeai-ai/quora-question-pairs).
 
 You will need to download the dataset separately in order to run any of the code. If you wish to run the embedding model that uses pretrained GloVe embeddings, you will also need to download the [pretrained vectors](http://nlp.stanford.edu/data/glove.6B.zip).
 
-## Summary
-
-The dataset consists of pairs of questions labeled with a 0 if they are semantically different and 1 if they are semantically the same.
-
-To embed the questions as vectors I implemented a model using pretrained GloVe embeddings, a model using Word2Vec embeddings trained on the dataset itself, and a model which uses a trainable embedding layer in the neural network itself.
-
-Both the GloVe and Word2Vec models acheive an accuracy of around .815 on the test data, while the third model achieves an accuracy of about .84. However, this third model is significantly more prone to overfitting, and may not generalize as well to new data. 
-
-A full accounting of the loss and accuracy for each epoch is provided in the histories folder.
 
 ## Running instructions
 
@@ -65,5 +58,4 @@ sentences will have similarity close to 1 and two dissimilar sentences will have
 
 My model uses binary-crossentropy to measure the loss and is trained using the adam optimizer, which differs slightly from the
 model outlined in the paper which uses Adagrad as its optimizer. In their case, the problem was not a binary classification problem
-but rather assigned a similarity value between 1 and 5. However, as in the paper, we initialize the LSTM weights with small random
-Gaussian entries and we increase the forget gate bias. 
+but rather assigned a similarity value between 1 and 5.
