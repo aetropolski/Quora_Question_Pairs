@@ -24,6 +24,7 @@ def text_to_sequence(seq_of_words, word_to_int):
     return text_as_ints
     
 if __name__ == '__main__':
+
     data = pd.read_csv('quora_duplicate_questions.tsv', sep='\t')
     data.dropna(inplace=True)
     
@@ -38,6 +39,9 @@ if __name__ == '__main__':
         embedding_dim = args.dimension
     else:
         embedding_dim = 300
+        
+    if not os.path.isdir(os.path.join('models',args.model)):
+        os.makedirs(os.path.join('models',args.model))
     
     if args.model == 'w2v':
         try:
@@ -114,6 +118,8 @@ if __name__ == '__main__':
     model_trained = model.fit([X_train['left'], X_train['right']], Y_train, batch_size = batch_size, epochs = epochs, validation_split = 0.1, callbacks = [cp_callback], verbose=2)
     
     if args.history:
+        if not os.path.isdir(os.path.join('histories',args.model)):
+            os.makedirs(os.path.join('histories',args.model))
         print('Saving history file...', flush = True)
         history_file = str(embedding_dim) + "dim_" + str(epochs) + "ep.txt"
         history_path = os.path.join('data',str(args.model), history_file)

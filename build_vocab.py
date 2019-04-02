@@ -37,7 +37,10 @@ if __name__ == '__main__':
 
     if args.model == 'glove' and embedding_dim not in [50, 100, 200, 300]:
         parser.error("Permissible embedding dimensions for GloVe are 50, 100, 200, or 300")
-        
+    
+    if not os.path.isdir(os.path.join('data',args.model)):
+            os.makedirs(os.path.join('data',args.model))
+            
     print('Using {} model with embedding dimension {}.'.format(args.model, embedding_dim), flush=True)
     
     if args.model == 'w2v':
