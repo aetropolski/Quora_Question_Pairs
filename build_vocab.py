@@ -61,6 +61,7 @@ if __name__ == '__main__':
         model.save(filepath)
     
     else:
+        print("Collecting vocabulary...", flush=True)
         word_data = []
         for index, row in data.iterrows():
             question1_words = normalize_text(row['question1'])
@@ -71,6 +72,7 @@ if __name__ == '__main__':
         vocab_size = len(unique_words)
         
         if args.model == 'glove':
+            print("Creating embedding matrix...", flush=True)
             word_index = {}
             embedding_matrix = np.random.normal(scale=0.6, size=(vocab_size,embedding_dim))
             filepath = 'glove.6B/glove.6B.' + str(embedding_dim) + 'd.txt'
@@ -99,9 +101,11 @@ if __name__ == '__main__':
             np.save(filepath, embedding_matrix)
         
         if args.model == 'trainable':
+            print("Tokenizing...", flush=True)
             t = Tokenizer(filters=[])
             t.fit_on_texts(unique_words)
             filepath = os.path.join('data', 'trainable', 'word_index.json')
+            print("Saving word index...", flush=True)
             with open(filepath,'w') as write_file:
                 json.dump(t.word_index, write_file)
     
