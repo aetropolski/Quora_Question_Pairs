@@ -31,6 +31,7 @@ if __name__ == '__main__':
     parser.add_argument("model", help="The embedding model you wish to use. Allowed values are glove, w2v, trainable", choices=['glove','w2v','trainable'])
     parser.add_argument("--dimension", help="embedding dimension", type=int)    
     parser.add_argument("--epochs", help="number of training epochs", type=int)
+    parser.add_argument("--history", help="save training history to text file", action="store_true")
     args = parser.parse_args()
     
     if args.dimension is not None:
@@ -112,4 +113,10 @@ if __name__ == '__main__':
 
     model_trained = model.fit([X_train['left'], X_train['right']], Y_train, batch_size = batch_size, epochs = epochs, validation_split = 0.1, callbacks = [cp_callback], verbose=2)
     
-    # Load best weights and print score?
+    if args.history:
+        print('Saving history file...', flush = True)
+        history_file = str(embedding_dim) + "dim_" + str(epochs) + "ep.txt"
+        history_path = os.path.join('data',str(args.model), history_file)
+        with open(history_path,'w') as file:
+            file.write('{} dimensional {} model trained for {} epochs.\n'.format(embedding_dim, args.model, epochs))
+            file.write(str(model_trained.history) + '\n')
