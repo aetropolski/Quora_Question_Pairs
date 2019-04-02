@@ -21,13 +21,13 @@ will assign each word in the dataset which is also in the GloVe corpus a unique 
 
 If you use the trainable model, there is no need to input a dimension until the next step, since no vectors are being created, it is simply building a dictionary between words and integers.
 
-Once you have run build_vocab.py, the next step is to run process_and_train.py. Make sure you have downloaded the file model_architecure.py before running this file. Again you must specify either 'w2v', 'glove', or 'trainable', and you may specify an embedding dimension (default is 300), as well as how many epochs to train for (default is 10). An error will be thrown if you run the model with a dimension that you do not have vectors for. For example, running
+Once you have run build_vocab.py, the next step is to run process_and_train.py. To save the loss and accuracy for each epoch to a text file add the argument --history. Make sure you have downloaded the file model_architecure.py before running this file. Again you must specify either 'w2v', 'glove', or 'trainable', and you may specify an embedding dimension (default is 300), as well as how many epochs to train for (default is 10). An error will be thrown if you run the model with a dimension that you do not have vectors for. For example, running
 
 ```
-python process_and_train.py glove --epochs 20
+python process_and_train.py glove --epochs 20 --history
 ```
 
-will convert the text data to sequences of integers, split into a training and testing set, and finally create and train the neural network for 20 epochs using a 300-dimensional embedding layer with pretrained weights. The best weights of the model will be saved so that you may evaluate it later. 
+will convert the text data to sequences of integers, split into a training and testing set, and finally create and train the neural network for 20 epochs using a 300-dimensional embedding layer with pretrained weights. The best weights of the model will be saved so that you may evaluate it later, and the training history will be saved to a text file. 
 
 ### Packages and GPU
 
