@@ -122,7 +122,7 @@ if __name__ == '__main__':
             os.makedirs(os.path.join('histories',args.model))
         print('Saving history file...', flush = True)
         history_file = str(embedding_dim) + "dim_" + str(epochs) + "ep.txt"
-        history_path = os.path.join('data',str(args.model), history_file)
+        history_path = os.path.join('histories',str(args.model), history_file)
         with open(history_path,'w') as file:
             file.write('{} dimensional {} model trained for {} epochs.\n'.format(embedding_dim, args.model, epochs))
             file.write(str(model_trained.history) + '\n')
