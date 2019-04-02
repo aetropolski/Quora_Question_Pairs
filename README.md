@@ -6,6 +6,7 @@ This project aims to implement the ideas in the paper [Siamese Recurrent Archite
 
 You will need to download the dataset separately in order to run any of the code. If you wish to run the embedding model that uses pretrained GloVe embeddings, you will also need to download the [pretrained vectors](http://nlp.stanford.edu/data/glove.6B.zip).
 
+An assessment of the model using pretrained global vectors (GloVe) can be seen in Glove_model_assessment.ipynb.
 
 ## Running instructions
 
